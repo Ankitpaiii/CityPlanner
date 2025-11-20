@@ -5,6 +5,7 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { PlaceHolderImages } from '@/lib/placeholder-images';
 import { Construction, Leaf, CircleDollarSign, PackageSearch, ArrowRight } from 'lucide-react';
 import { Logo } from '@/components/logo';
+import { ThemeToggle } from '@/components/theme-toggle';
 
 const bots = [
   {
@@ -36,6 +37,7 @@ export default function Home() {
     <main className="flex-1">
       <header className="p-4 md:px-6 flex items-center justify-between">
         <Logo />
+        <ThemeToggle />
       </header>
 
       <section className="relative h-[60vh] md:h-[70vh] flex items-center justify-center text-center text-white overflow-hidden">
@@ -83,12 +85,12 @@ export default function Home() {
               </p>
             </div>
           </div>
-          <div className="mx-auto grid max-w-7xl grid-cols-1 items-start gap-8 py-12 sm:grid-cols-2 lg:grid-cols-4">
+          <div className="mx-auto grid max-w-7xl items-start gap-8 py-12 sm:grid-cols-2 lg:grid-cols-4">
             {bots.map((bot) => (
               <Card key={bot.name} className="h-full transition-all duration-300 hover:bg-card/80 hover:scale-[1.02]">
                 <CardHeader className="flex flex-col items-center text-center gap-4">
                   {bot.icon}
-                  <CardTitle className="font-headline text-2xl">{bot.name}</CardTitle>
+                  <CardTitle className="font-headline text-2xl text-center">{bot.name}</CardTitle>
                 </CardHeader>
                 <CardContent className="text-center">
                   <p className="text-muted-foreground">{bot.description}</p>
