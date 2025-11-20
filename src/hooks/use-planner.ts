@@ -12,8 +12,6 @@ type PlannerStatus =
   | 'loading'
   | 'done'
   | 'optimizing'
-  | 'optimized'
-  | 'evaluating'
   | 'evaluated'
   | 'error';
 
@@ -26,11 +24,9 @@ interface PlannerState {
   svgBlueprint?: string;
   grandTotal: number;
   isOverBudget: boolean;
-  optimizedCosting?: string;
-  optimizationExplanation?: string;
   environmentalReport?: AssessEnvironmentalImpactOutput;
   error?: {
-    step: 'initial' | 'optimization' | 'evaluation';
+    step: 'initial' | 'evaluation';
     message: string;
   };
 }
@@ -46,17 +42,27 @@ export function usePlanner(cityDescription: string) {
   const router = useRouter();
   const { toast } = useToast();
 
-  const runInitialPlanner = useCallback(async () => {
+  const runInitialAnalysis = useCallback(async () => {
     setState(s => ({ ...initialState, cityDescription: s.cityDescription, status: 'loading' }));
     toast({
         title: "Generating Initial Plan...",
-        description: "Our AI crew is building your city blueprint.",
+        description: "Our AI crew is building your city blueprint and analyzing its impact.",
     });
 
     try {
       const initialPlanResponse = await getInitialPlan(cityDescription);
       const { rawMaterials, originalCosting, initialBlueprint, svgBlueprint } = parseInitialPlan(initialPlanResponse);
       const grandTotal = parseGrandTotal(originalCosting);
+      
+      toast({
+        title: "Evaluating Environmental Impact...",
+        description: "The analysis is running alongside plan generation.",
+      });
+      
+      const report = await getEnvironmentalReport({
+        cityPlanDescription: cityDescription,
+        originalCosting: originalCosting,
+      });
       
       setState(s => ({
         ...s,
@@ -67,16 +73,17 @@ export function usePlanner(cityDescription: string) {
         svgBlueprint,
         grandTotal,
         isOverBudget: grandTotal > 1000000,
+        environmentalReport: report,
       }));
 
       toast({
-        title: "Initial Plan Generated!",
-        description: "Review the materials, costs, and layout.",
+        title: "Initial Analysis Complete!",
+        description: "Review the materials, costs, environmental report, and layout.",
       });
 
     } catch (e) {
       const err = e as Error;
-      console.error(`Error during initial plan generation:`, err);
+      console.error(`Error during initial analysis:`, err);
       setState(s => ({
         ...s,
         status: 'error',
@@ -90,84 +97,10 @@ export function usePlanner(cityDescription: string) {
     }
   }, [cityDescription, toast]);
   
-  const runOptimization = useCallback(async () => {
-    if (!state.originalCosting) return;
-
-    setState(s => ({ ...s, status: 'optimizing' }));
-    toast({
-        title: "Optimizing Plan...",
-        description: "Our AI Finance Manager is working on the budget.",
-    });
-
-    try {
-        const optimizedPlan = await getOptimizedPlan(state.originalCosting);
-        setState(s => ({
-            ...s,
-            status: 'optimized',
-            optimizedCosting: optimizedPlan.optimizedPlanCosting,
-            optimizationExplanation: optimizedPlan.explanation,
-        }));
-        toast({
-            title: "Plan Optimized!",
-            description: "The city plan has been updated to fit the budget.",
-        });
-    } catch(e) {
-        const err = e as Error;
-        console.error(`Error during optimization:`, err);
-        setState(s => ({
-          ...s,
-          status: 'error',
-          error: { step: 'optimization', message: err.message },
-        }));
-        toast({
-          variant: "destructive",
-          title: "Optimization Failed",
-          description: err.message || `Something went wrong during budget optimization.`,
-        });
-    }
-  }, [state.originalCosting, toast]);
-
-  const runEvaluation = useCallback(async () => {
-    setState(s => ({ ...s, status: 'evaluating' }));
-    toast({
-        title: "Evaluating Environmental Impact...",
-        description: "Our AI is analyzing the sustainability of your plan.",
-    });
-
-    try {
-        const report = await getEnvironmentalReport({
-          cityPlanDescription: state.cityDescription,
-          originalCosting: state.originalCosting,
-          optimizedCosting: state.optimizedCosting
-        });
-        setState(s => ({
-            ...s,
-            status: 'evaluated',
-            environmentalReport: report,
-        }));
-        toast({
-            title: "Environmental Report Generated!",
-            description: "The analysis is complete.",
-        });
-    } catch(e) {
-        const err = e as Error;
-        console.error(`Error during evaluation:`, err);
-        setState(s => ({
-          ...s,
-          status: 'error',
-          error: { step: 'evaluation', message: err.message },
-        }));
-        toast({
-          variant: "destructive",
-          title: "Evaluation Failed",
-          description: err.message || `Something went wrong during environmental analysis.`,
-        });
-    }
-  }, [state.cityDescription, state.originalCosting, state.optimizedCosting, toast]);
 
   const reset = () => {
     router.push('/build');
   };
 
-  return { state, runInitialPlanner, runOptimization, runEvaluation, reset };
+  return { state, runInitialAnalysis, reset };
 }
