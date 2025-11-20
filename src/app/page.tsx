@@ -5,6 +5,7 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { PlaceHolderImages } from '@/lib/placeholder-images';
 import { Construction, Leaf, CircleDollarSign, PackageSearch, ArrowRight } from 'lucide-react';
 import { Logo } from '@/components/logo';
+import { ThemeToggle } from '@/components/theme-toggle';
 
 const bots = [
   {
@@ -36,6 +37,7 @@ export default function Home() {
     <div className="flex flex-col min-h-screen bg-background">
       <header className="p-4 md:px-6 flex items-center justify-between">
         <Logo />
+        <ThemeToggle />
       </header>
 
       <main className="flex-1">
@@ -50,7 +52,7 @@ export default function Home() {
                 data-ai-hint={heroImage.imageHint}
               />
           )}
-          <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/30 to-transparent z-10"></div>
+          <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent z-10"></div>
           <div className="container px-4 md:px-6 z-20 space-y-4 relative">
             <h1 className="text-4xl md:text-6xl font-headline font-bold tracking-tighter text-shadow-lg">
               Build the City of Tomorrow, Today.

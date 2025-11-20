@@ -3,14 +3,17 @@ import './globals.css';
 import { Toaster } from "@/components/ui/toaster"
 import { Inter, Space_Grotesk } from 'next/font/google';
 import { cn } from '@/lib/utils';
+import { ThemeProvider } from '@/components/theme-provider';
 
 const fontBody = Inter({
   subsets: ['latin'],
+  display: 'swap',
   variable: '--font-body',
 });
 
 const fontHeadline = Space_Grotesk({
   subsets: ['latin'],
+  display: 'swap',
   variable: '--font-headline',
 });
 
@@ -31,8 +34,15 @@ export default function RootLayout({
         fontBody.variable,
         fontHeadline.variable
       )}>
-        {children}
-        <Toaster />
+        <ThemeProvider
+            attribute="class"
+            defaultTheme="system"
+            enableSystem
+            disableTransitionOnChange
+        >
+          {children}
+          <Toaster />
+        </ThemeProvider>
       </body>
     </html>
   );
