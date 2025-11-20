@@ -45,16 +45,16 @@ Your task is to analyze the provided "Original Plan Costing" and bring the "Gran
 **Budget Limit**: ₹{{{budgetLimit}}}
 
 **Instructions**:
-1.  Identify expensive optional/luxury materials.
-2.  Suggest affordable alternatives or reduce quantities to lower the total cost.
-3.  Recalculate the cost table with the changes.
-4.  Ensure the new Grand Total is within the budget limit.
-5.  Provide a clear explanation of the changes you made.
+1.  **Analyze**: Carefully review the material list and identify items that are expensive, optional, or luxury.
+2.  **Optimize**: To reduce the total cost, either suggest more affordable alternative materials or reduce the quantities of expensive items. Be specific (e.g., "Replaced Marble Flooring with Polished Concrete," "Reduced number of decorative statues by 50%").
+3.  **Recalculate**: Create a new, complete costing table named "Optimized Cost Estimate". This table MUST include columns for Material, Quantity, Unit Cost, and Total Cost for every single item, even those that were not changed.
+4.  **Summarize**: After the table, calculate a new Subtotal, a 10% contingency fee, and a new Grand Total.
+5.  **Explain**: Write a clear, concise explanation of the changes you made to achieve the budget target.
 
 **Output Format**:
 Your entire output must conform to the JSON schema.
--   \`optimizedPlanCosting\` should contain the full, recalculated cost table and summary, including Subtotal, Contingency, and the new Grand Total.
--   \`explanation\` should describe the specific optimizations you performed.
+-   The 'optimizedPlanCosting' field must contain the full, recalculated cost table and the new summary (Subtotal, Contingency, Grand Total).
+-   The 'explanation' field must describe the specific optimizations you performed.
 `,
 });
 
