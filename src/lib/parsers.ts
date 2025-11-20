@@ -2,15 +2,18 @@ export function parseInitialPlan(markdown: string): {
   rawMaterials: string;
   originalCosting: string;
   initialBlueprint: string;
+  svgBlueprint: string;
 } {
   const materialsMatch = markdown.match(/## Raw Materials([\s\S]*?)## Cost Estimate/);
-  const costingMatch = markdown.match(/## Cost Estimate([\s\S]*?)## Initial Blueprint/);
-  const blueprintMatch = markdown.match(/## Initial Blueprint([\s\S]*)/);
+  const costingMatch = markdown.match(/## Cost Estimate([\s\S]*?)## ASCII Blueprint/);
+  const blueprintMatch = markdown.match(/## ASCII Blueprint([\s\S]*?)## SVG Blueprint/);
+  const svgBlueprintMatch = markdown.match(/## SVG Blueprint([\s\S]*)/);
 
   return {
     rawMaterials: materialsMatch ? materialsMatch[1].trim() : "Could not parse raw materials.",
     originalCosting: costingMatch ? costingMatch[1].trim() : "Could not parse cost estimate.",
-    initialBlueprint: blueprintMatch ? blueprintMatch[1].trim() : "Could not parse initial blueprint.",
+    initialBlueprint: blueprintMatch ? blueprintMatch[1].trim() : "Could not parse ASCII blueprint.",
+    svgBlueprint: svgBlueprintMatch ? svgBlueprintMatch[1].trim() : "Could not parse SVG blueprint.",
   };
 }
 

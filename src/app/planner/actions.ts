@@ -13,7 +13,7 @@ export async function getInitialPlan(cityDescription: string) {
     ---
 
     **Instructions**:
-    You must generate a response with three distinct sections, formatted exactly as shown below using Markdown headings.
+    You must generate a response with four distinct sections, formatted exactly as shown below using Markdown headings.
 
     **1. Raw Materials Section:**
     - Start with the heading: \`## Raw Materials\`
@@ -33,11 +33,19 @@ export async function getInitialPlan(cityDescription: string) {
         - **Contingency (10%)**: 10% of the Subtotal.
         - **Grand Total**: Subtotal + Contingency.
 
-    **3. Initial Blueprint Section:**
-    - Start with the heading: \`## Initial Blueprint\`
-    - Create a simple, top-down ASCII art diagram representing the city layout described by the user.
+    **3. ASCII Blueprint Section:**
+    - Start with the heading: \`## ASCII Blueprint\`
+    - Create a simple, top-down ASCII art diagram representing the city layout described by the user. Use symbols to represent different zones (e.g., [R] for Residential, [C] for Commercial, [I] for Industrial, |-| for roads, ~~~ for water).
 
-    **IMPORTANT**: Ensure your output strictly follows this three-section Markdown structure. Do not add any extra text or conversation before or after the structured output.
+    **4. SVG Blueprint Section:**
+    - Start with the heading: \`## SVG Blueprint\`
+    - Generate a clean, colorful, and exportable SVG-based 2D city map.
+    - The SVG should be a single block of code starting with \`<svg ...>\` and ending with \`</svg>\`.
+    - Use different colored \`<rect>\` or \`<path>\` elements to represent different zones (e.g., green for parks, gray for residential, blue for commercial).
+    - Add \`<text>\` labels for key zones.
+    - Make sure the SVG is well-formed and visually represents the user's city description.
+
+    **IMPORTANT**: Ensure your output strictly follows this four-section Markdown structure. Do not add any extra text or conversation before or after the structured output.
   `;
   try {
     const result = await generateInitialBlueprint({ cityDescription: prompt });
@@ -59,4 +67,14 @@ export async function getOptimizedPlan(originalPlanCosting: string) {
     console.error("Error in getOptimizedPlan:", error);
     throw new Error("Failed to generate the optimized cost plan.");
   }
+}
+
+export async function getEnvironmentalReport(input: AssessEnvironmentalImpactInput) {
+    try {
+        const result = await assessEnvironmentalImpact(input);
+        return result;
+    } catch (error) {
+        console.error("Error in getEnvironmentalReport:", error);
+        throw new Error("Failed to generate the environmental report.");
+    }
 }
