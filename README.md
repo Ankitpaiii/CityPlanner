@@ -41,7 +41,7 @@ Final city layout generation
 
 
 
-<img width="2880" height="5542" alt="image" src="https://github.com/user-attachments/assets/2c374293-f68b-46d9-9f96-ed9e26c0f2ba" />
+<img width="2880" height="4100" alt="screencapture-city-planner-chi-vercel-app-optimizer-2025-12-30-01_08_54" src="https://github.com/user-attachments/assets/fe9583dd-cedd-44b5-b918-db7157a637f6" />
 
 
 
