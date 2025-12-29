@@ -1,36 +1,52 @@
-🏙️ City Planner Crew — Multi-Agent AI System
+# 🏙️ City Planner Crew
+### AI-Powered Multi-Agent System for Sustainable City Planning
 
-City Planner Crew is a multi-agent AI workflow that collaboratively designs a sustainable, budget-friendly, and environment-safe city layout. The system uses four specialized AI bots that work together to generate an optimized township plan.
+City Planner Crew is an AI-driven multi-agent platform that collaboratively designs **sustainable, budget-friendly, and eco-conscious city layouts**.  
+It simulates real-world urban planning by coordinating specialized AI agents responsible for materials, finance, environment, and construction planning.
 
-🤖 Agents
-1️⃣ Raw Material Supplier Bot
+Built using **Next.js, TypeScript, and Tailwind CSS**, the application delivers a modern UI with detailed analytical outputs such as material breakdowns, budget validation, environmental impact scoring, and optimized city layouts.
 
-Provides materials, costs, quantities, and alternatives.
+---
 
-2️⃣ Finance Manager Bot
+## ✨ Features
 
-Validates and manages the budget (default: ₹10 Lakhs).
+- 🤖 Multi-Agent AI Workflow  
+- 💰 Budget-Aware Cost Estimation & Optimization  
+- 🌱 Environmental Impact Analysis (Green Score)  
+- 🏗️ Automated City Layout Generation  
+- 📊 Detailed Material & Financial Reports  
+- 🌙 Dark Mode UI  
+- ⚡ Fast & Responsive (Next.js + Tailwind)
 
-3️⃣ Environment Check Bot
+---
 
-Ensures eco-friendly and safe city planning.
+## 🤖 AI Agents
 
-4️⃣ Builder Bot
+### 🧱 Raw Material Supplier Bot
+Analyzes the city plan and generates a comprehensive list of required raw materials, quantities, and categories.
 
-Creates the final city/township layout using approved materials and constraints.
+### 💸 Finance Manager Bot
+Converts material requirements into cost estimates, validates the budget, and optimizes the plan if it exceeds limits.
 
-🔄 Workflow
+### 🌿 Environment Check Bot
+Evaluates environmental impact, calculates a Green Score, identifies risks, and suggests eco-friendly alternatives.
 
-User gives requirements
+### 🏗️ Builder Bot
+Generates the final city layout blueprint, including visual diagrams and a summarized construction plan.
 
-Material selection
+---
 
-Budget approval
+## 🔄 Workflow
 
-Environmental validation
+1. User provides city requirements  
+2. Raw material analysis  
+3. Budget validation and optimization  
+4. Environmental impact assessment  
+5. Final city layout generation  
 
-Final city layout generation
+---
 
+## 📸 Screenshots
 
 <img width="2829" height="1606" alt="image" src="https://github.com/user-attachments/assets/d9aec990-57f7-4bf1-8bab-7858463ed7ea" />
 
@@ -43,6 +59,113 @@ Final city layout generation
 
 <img width="2880" height="4100" alt="screencapture-city-planner-chi-vercel-app-optimizer-2025-12-30-01_08_54" src="https://github.com/user-attachments/assets/fe9583dd-cedd-44b5-b918-db7157a637f6" />
 
+---
+
+🛠️ Tech Stack
+
+Framework: Next.js
+
+Language: TypeScript
+
+Styling: Tailwind CSS
+
+UI Config: components.json
+
+Hosting: apphosting.yaml
+
+## 📁 Project Structure
+
+```text
+.
+├── docs/                # Documentation & screenshots
+├── src/                 # Source code
+├── .gitignore
+├── README.md
+├── apphosting.yaml
+├── components.json
+├── next.config.ts
+├── package.json
+├── package-lock.json
+├── postcss.config.mjs
+├── tailwind.config.ts
+└── tsconfig.json
+```
+
+---
+
+## 🚀 Getting Started
+
+### Clone the repository
+
+```bash
+git clone https://github.com/your-username/city-planner-crew.git
+cd city-planner-crew
+```
+
+### Install dependencies
+
+```bash
+npm install
+```
+
+### Run the development server
+
+```bash
+npm run dev
+```
+
+Open **[http://localhost:3000](http://localhost:3000)**
+
+---
+
+## 📈 Output Includes
+
+* Raw material quantity & cost tables
+* Financial breakdown in INR
+* Environmental Green Score & risk analysis
+* Visual city layout map
+* Optimized city plan under budget constraints
+
+---
+
+## 🎯 Use Cases
+
+* Smart city simulations
+* Sustainable urban planning
+* AI workflow demonstrations
+* Academic & research projects
+* Hackathons & case studies
+
+---
+
+## 🔒 Security
+
+Keep dependencies updated:
+
+```bash
+npm install next@latest
+```
+
+---
+
+## 🤝 Contributing
+
+1. Fork the repository
+2. Create a new branch
+3. Commit your changes
+4. Open a Pull Request
+
+---
+
+## 📄 License
+
+MIT License
+
+---
+
+## 🌟 Acknowledgements
+
+Built with modern web technologies and AI-driven design principles to explore the future of sustainable urban planning.
 
 
 
