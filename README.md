@@ -98,8 +98,9 @@ Hosting: apphosting.yaml
 ### Clone the repository
 
 ```bash
-git clone https://github.com/your-username/city-planner-crew.git
-cd city-planner-crew
+git clone https://github.com/Jacksss-hub/CityPlanner.git
+cd CityPlanner
+
 ```
 
 ### Install dependencies
